@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>С 8 Марта!</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Caveat:wght@400;700&family=Cormorant+Garamond:ital,wght@1,300;1,600&display=swap" rel="stylesheet" />
+<style>
+/* ═══════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Caveat', cursive;
+  overflow-x: hidden;
+  cursor: default;
+  background:
+    radial-gradient(ellipse at 20% 30%, #ffb3c6 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 70%, #f48fb1 0%, transparent 50%),
+    radial-gradient(ellipse at 55% 10%, #fce4ec 0%, transparent 60%),
+    linear-gradient(135deg, #fce4ec, #f8bbd0, #f48fb1, #fce4ec);
+  background-size: 200% 200%, 200% 200%, 200% 200%, 400% 400%;
+  animation: bodyPulse 14s ease infinite;
+  min-height: 100vh;
+  padding: 28px 24px;
+}
+
+@keyframes bodyPulse {
+  0%   { background-position: 0%   50%, 100% 50%, 50%  0%, 0%   50%; }
+  33%  { background-position: 60%  30%, 30%  70%, 80%  40%, 50%  0%;  }
+  66%  { background-position: 100% 60%, 0%   20%, 20%  80%, 100% 50%; }
+  100% { background-position: 0%   50%, 100% 50%, 50%  0%, 0%   50%; }
+}
+
+/* ═══════════════════════════════════════════
+   SECTION BASE — стеклянные карточки
+═══════════════════════════════════════════ */
+.section {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 32px;
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  box-shadow:
+    inset 0 2px 0   rgba(255, 255, 255, 0.80),
+    inset 0 -1px 0  rgba(255, 200, 220, 0.30),
+    inset 2px 0 0   rgba(255, 255, 255, 0.40),
+    0 24px 70px     rgba(233, 30, 99, 0.20),
+    0 6px 20px      rgba(255, 120, 160, 0.14),
+    0 1px 0         rgba(255, 255, 255, 0.60);
+  backdrop-filter: blur(32px) saturate(160%) brightness(1.06);
+  -webkit-backdrop-filter: blur(32px) saturate(160%) brightness(1.06);
+  margin-bottom: 28px;
+  box-sizing: border-box;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 8%; right: 8%;
+  height: 1.5px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255,255,255,0.0) 10%,
+    rgba(255,255,255,0.9) 40%,
+    rgba(255,255,255,1.0) 50%,
+    rgba(255,255,255,0.9) 60%,
+    rgba(255,255,255,0.0) 90%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99;
+}
+
+.section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(255,255,255,0.12) 0%,
+    rgba(255,255,255,0.04) 40%,
+    rgba(255,200,220,0.06) 70%,
+    rgba(255,255,255,0.10) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+  border-radius: inherit;
+}
+
+/* ═══════════════════════════════════════════
+   БЛОК 1 — Hero
+═══════════════════════════════════════════ */
+#hero {
+  flex-direction: column;
+  background: linear-gradient(
+    135deg,
+    rgba(252, 228, 236, 0.82),
+    rgba(244, 143, 177, 0.78),
+    rgba(233,  30,  99, 0.70),
+    rgba(255, 138, 128, 0.74),
+    rgba(255, 205, 210, 0.80)
+  );
+  background-size: 400% 400%;
+  animation: heroGradient 8s ease infinite;
+}
+
+@keyframes heroGradient {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+
+#heroCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-eight-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 800px;
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-eight {
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(280px, 55vw, 660px);
+  color: rgba(255,255,255,0.13);
+  line-height: 1;
+  will-change: transform;
+  transform-style: preserve-3d;
+  text-shadow:
+    0 0 80px rgba(255,100,150,0.25),
+    0 40px 80px rgba(200,0,80,0.15);
+  transition: transform 0.1s linear;
+  animation: floatEight 7s ease-in-out infinite;
+  backface-visibility: hidden;
+}
+
+@keyframes floatEight {
+  0%, 100% { transform: translateY(0) rotateY(-4deg) rotateX(2deg); }
+  50%       { transform: translateY(-20px) rotateY(4deg) rotateX(-2deg); }
+}
+
+.fog-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 220px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.tulip {
+  position: absolute;
+  font-size: clamp(2rem, 4.5vw, 3.8rem);
+  pointer-events: none;
+  z-index: 2;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.18));
+  will-change: transform;
+  animation: sway 4s ease-in-out infinite;
+}
+.t1  { top: 6%;   left: 3%;   animation-delay: 0s;    animation-duration: 3.5s; --depth: 0.08; }
+.t2  { top: 8%;   right: 4%;  animation-delay: 0.7s;  animation-duration: 4.2s; --depth: 0.12; }
+.t3  { bottom: 9%;  left: 5%;   animation-delay: 1.2s;  animation-duration: 3.8s; --depth: 0.06; }
+.t4  { bottom: 14%; right: 5%;  animation-delay: 0.3s;  animation-duration: 4.5s; --depth: 0.10; }
+.t5  { top: 42%; left: 1%;   animation-delay: 1.8s;  animation-duration: 3.2s; --depth: 0.14; }
+.t6  { top: 28%; right: 2%;  animation-delay: 0.9s;  animation-duration: 4.8s; --depth: 0.09; }
+.t7  { bottom: 4%;  left: 44%; animation-delay: 0.5s;  animation-duration: 4s;   --depth: 0.07; }
+.t8  { top: 4%;  left: 44%;  animation-delay: 1.5s;  animation-duration: 3.6s; --depth: 0.11; }
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-8deg) scale(1);     }
+  50%       { transform: rotate(8deg) scale(1.08);  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 4;
+  text-align: center;
+  padding: 2rem;
+  animation: fadeUp 1.9s ease both;
+}
+.hero-content h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(2.8rem, 10vw, 7rem);
+  color: #fff;
+  text-shadow: 0 4px 40px rgba(150,0,60,0.4), 0 0 80px rgba(255,150,180,0.3);
+  letter-spacing: 3px;
+  margin-bottom: 1rem;
+}
+.hero-content p {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(1.2rem, 4vw, 2rem);
+  color: rgba(255,255,255,0.92);
+  letter-spacing: 1px;
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Caveat', cursive;
+  font-size: 1.15rem;
+  color: rgba(255,255,255,0.82);
+  animation: bounce 2s ease-in-out infinite;
+  z-index: 4;
+  letter-spacing: 1px;
+}
+.scroll-hint::after { content: ' ↓'; }
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(9px); }
+}
+
+/* ═══════════════════════════════════════════
+   БЛОК 2 — Главный заголовок
+   FIX: фото тюльпанов на весь блок + блюр за текстом
+═══════════════════════════════════════════ */
+#greeting {
+  flex-direction: column;
+  gap: 2rem;
+  background: rgba(255, 230, 242, 0.20);
+}
+
+#greetingCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Фоновое фото тюльпанов — весь блок ── */
+.greeting-bg {
+  position: absolute;
+  /* Отступ за пределы блока чтобы blur не давал белые края */
+  inset: -20px;
+  background-image: url('/image/flower.png');
+  background-size: cover;
+  background-position: center center;
+  filter: blur(2px) brightness(0.82) saturate(1.15);
+  opacity: 0;
+  transition: opacity 1.4s ease;
+  z-index: 1;
+  border-radius: inherit;
+  will-change: opacity;
+}
+.greeting-bg.visible {
+  opacity: 1;
+}
+
+/* Тёмный оверлей поверх фото — чуть притемняет */
+.greeting-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center,
+    rgba(180, 10, 70, 0.18) 0%,
+    rgba(20, 0, 10, 0.38) 100%);
+  opacity: 0;
+  transition: opacity 1.4s ease;
+  z-index: 2;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.greeting-overlay.visible {
+  opacity: 1;
+}
+
+/* Стеклянная подложка ЗА текстом (блюр за надписью) */
+.greeting-text-glass {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 2.5rem 3.5rem;
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.0);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transition:
+    backdrop-filter 1s ease 0.6s,
+    -webkit-backdrop-filter 1s ease 0.6s,
+    border-color 1s ease 0.6s,
+    background 1s ease 0.6s;
+}
+.greeting-text-glass.glasson {
+  backdrop-filter: blur(18px) saturate(140%) brightness(1.08);
+  -webkit-backdrop-filter: blur(18px) saturate(140%) brightness(1.08);
+  background: rgba(255, 230, 242, 0.28);
+  border-color: rgba(255,255,255,0.45);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.7),
+    0 8px 40px rgba(200,0,80,0.18);
+}
+
+/* Заголовок с печатью символ за символом */
+.main-title {
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(3rem, 11vw, 8rem);
+  color: #c2185b;
+  text-shadow: 0 6px 50px rgba(194,24,91,0.22), 0 0 120px rgba(194,24,91,0.08);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  position: relative;
+  z-index: 2;
+  border-right: 4px solid transparent;
+  white-space: nowrap;
+}
+.main-title.typing {
+  opacity: 1;
+  transform: translateY(0);
+  border-right-color: #e91e63;
+  animation: blink 0.7s step-end infinite;
+}
+.main-title.done {
+  opacity: 1;
+  transform: translateY(0);
+  border-right-color: transparent;
+  animation: none;
+}
+/* Когда фото показывается — текст белеет */
+.main-title.on-photo {
+  color: #fff;
+  text-shadow:
+    0 0 40px rgba(255,100,160,0.8),
+    0 4px 20px rgba(0,0,0,0.4),
+    0 0 80px rgba(255,180,210,0.4);
+  transition: color 1s ease 0.3s, text-shadow 1s ease 0.3s;
+}
+
+@keyframes blink {
+  50% { border-right-color: transparent; }
+}
+
+/* ═══════════════════════════════════════════
+   БЛОК 3 — Поздравление часть 1
+═══════════════════════════════════════════ */
+#wish1 {
+  background: rgba(10, 0, 6, 0.52);
+  flex-direction: column;
+  backdrop-filter: blur(28px) saturate(80%) brightness(0.60);
+  -webkit-backdrop-filter: blur(28px) saturate(80%) brightness(0.60);
+  border-color: rgba(255, 150, 180, 0.25);
+  box-shadow:
+    inset 0 2px 0   rgba(255, 120, 160, 0.40),
+    inset 0 -1px 0  rgba(20, 0, 10, 0.50),
+    inset 2px 0 0   rgba(255, 100, 140, 0.20),
+    0 24px 70px     rgba(0, 0, 0, 0.40),
+    0 6px 20px      rgba(233, 30, 99, 0.18);
+}
+
+/* ── Слайдер фото FIX ── */
+/*
+  Каждое фото = 100% ширины section (100vw минус padding body).
+  Контейнер = N × 100% ширины section.
+  Translate только по X, всегда кратно ширине одного слайда.
+  background-size: cover — нет растяжения на мобильных.
+*/
+.bg-photos {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  height: 100%;
+  /* Ширина задаётся через JS: photoCount * 100% */
+  will-change: transform;
+  transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+  z-index: 0;
+}
+
+.bg-photo {
+  /* Ширина задаётся через JS: 100% / photoCount */
+  flex: 0 0 auto;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  /* Нет filter здесь — управляем через loaded-класс */
+  filter: blur(0px) brightness(0.7) saturate(1);
+  transform: scale(1.04);
+  transition: filter 2s ease, transform 2s ease;
+}
+.bg-photo.loaded {
+  filter: blur(10px) brightness(0.5) saturate(0.65);
+  transform: scale(1.0);
+}
+
+/* Цвета-заглушки и фоновые изображения */
+.bg-photo:nth-child(1) { background-color: #ec9ed7; background-image: url('image/2.jpg'); }
+.bg-photo:nth-child(2) { background-color: #ec9ed7; background-image: url('image/5.jpg'); }
+.bg-photo:nth-child(3) { background-color: #ec9ed7; background-image: url('image/4.jpg'); }
+.bg-photo:nth-child(4) { background-color: #ec9ed7; background-image: url('image/3.jpg'); }
+.bg-photo:nth-child(5) { background-color: #ec9ed7; background-image: url('image/1.jpg'); }
+
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(20,0,10,0.3) 0%, rgba(10,0,5,0.65) 100%);
+  z-index: 1;
+}
+
+.wish-text {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+.wish-text.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.wish-text p {
+  font-family: 'Cormorant Garamond', cursive;
+  font-style: italic;
+  font-size: clamp(1.8rem, 5.5vw, 90rem);
+  color: #fff;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.5), 0 0 60px rgba(255,180,200,0.15);
+  line-height: 1.5;
+  font-weight: 300;
+  letter-spacing: 1.5px;
+}
+
+#wish1Fog {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* ═══════════════════════════════════════════
+   БЛОК 4 — Поздравление часть 2
+   FIX: убраны цветы по кругу, добавлены лепестки
+═══════════════════════════════════════════ */
+#wish2 {
+  flex-direction: column;
+  gap: 1.2rem;
+  background: rgba(70, 0, 35, 0.48);
+  backdrop-filter: blur(30px) saturate(140%) brightness(0.72);
+  -webkit-backdrop-filter: blur(30px) saturate(140%) brightness(0.72);
+  border-color: rgba(255, 100, 150, 0.35);
+  box-shadow:
+    inset 0 2px 0   rgba(255, 160, 200, 0.55),
+    inset 0 -1px 0  rgba(80, 0, 40, 0.40),
+    inset 2px 0 0   rgba(255, 130, 170, 0.25),
+    0 24px 70px     rgba(200, 0, 80, 0.30),
+    0 6px 20px      rgba(255, 80, 130, 0.20);
+}
+
+#wish2 .wish2-glow-pattern {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 15% 85%, rgba(255,255,255,0.07) 0%, transparent 45%),
+    radial-gradient(circle at 85% 15%, rgba(255,255,255,0.07) 0%, transparent 45%);
+  pointer-events: none;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+/* Canvas для лепестков в блоке 4 (поверх glow-canvas) */
+#wish2PetalCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+#wish2Canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wish2-part1 {
+  font-family: 'Caveat';
+  font-size: clamp(1.6rem, 5vw, 3.2rem);
+  color: rgba(255,255,255,0.93);
+  text-align: center;
+  padding: 0 2rem;
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+  position: relative;
+  z-index: 5;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+.wish2-part1.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.wish2-happiness {
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(4.5rem, 16vw, 12rem);
+  color: #fff;
+  text-align: center;
+  text-shadow:
+    0 0 30px rgba(255,210,230,0.9),
+    0 0 80px rgba(255,150,190,0.6),
+    0 0 150px rgba(255,100,150,0.3),
+    0 6px 40px rgba(0,0,0,0.25);
+  opacity: 0;
+  transform: scale(0.2);
+  transition: opacity 0.6s ease 1s, transform 0.7s cubic-bezier(.17,.67,.29,1.5) 1s;
+  position: relative;
+  z-index: 5;
+  will-change: transform;
+}
+.wish2-happiness.visible {
+  opacity: 1;
+  transform: scale(1);
+  animation: heartbeat 1.6s ease-in-out infinite 1.7s;
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+    text-shadow:
+      0 0 30px rgba(255,210,230,0.9),
+      0 0 80px rgba(255,150,190,0.6),
+      0 0 150px rgba(255,100,150,0.3),
+      0 6px 40px rgba(0,0,0,0.25);
+  }
+  14% {
+    transform: scale(1.06);
+    text-shadow:
+      0 0 50px rgba(255,220,240,1),
+      0 0 120px rgba(255,160,200,0.9),
+      0 0 220px rgba(255,100,150,0.6),
+      0 6px 40px rgba(0,0,0,0.25);
+  }
+  28% {
+    transform: scale(1);
+    text-shadow:
+      0 0 30px rgba(255,210,230,0.9),
+      0 0 80px rgba(255,150,190,0.6),
+      0 0 150px rgba(255,100,150,0.3),
+      0 6px 40px rgba(0,0,0,0.25);
+  }
+  42% {
+    transform: scale(1.04);
+    text-shadow:
+      0 0 45px rgba(255,215,235,1),
+      0 0 100px rgba(255,155,195,0.8),
+      0 0 190px rgba(255,100,150,0.5),
+      0 6px 40px rgba(0,0,0,0.25);
+  }
+  70% { transform: scale(1); }
+}
+
+/* ─── Общие анимации ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════════════════════════════════
+   РАЗРЫВЫ МЕЖДУ БЛОКАМИ
+═══════════════════════════════════════════ */
+.blend {
+  display: block;
+  width: 100%;
+  height: 28px;
+  pointer-events: none;
+  background: transparent;
+}
+
+/* ═══════════════════════════════════════════
+   АДАПТИВ
+═══════════════════════════════════════════ */
+@media (max-width: 600px) {
+  body { padding: 14px 10px; }
+  .section { border-radius: 20px; }
+  .blend   { height: 14px; }
+
+  .main-title {
+    white-space: normal;
+    font-size: clamp(2.4rem, 13vw, 4rem);
+  }
+  .greeting-text-glass {
+    padding: 1.8rem 2rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     БЛОК 1 — Hero / Заставка
+════════════════════════════════════════ -->
+<section class="section" id="hero">
+
+  <canvas id="heroCanvas"></canvas>
+
+  <div class="hero-eight-wrap">
+    <div class="hero-eight" id="heroEight" aria-hidden="true">8</div>
+  </div>
+
+  <span class="tulip t1" aria-hidden="true">🌷</span>
+  <span class="tulip t2" aria-hidden="true">🌸</span>
+  <span class="tulip t3" aria-hidden="true">🌺</span>
+  <span class="tulip t4" aria-hidden="true">🌷</span>
+  <span class="tulip t5" aria-hidden="true">🌸</span>
+  <span class="tulip t6" aria-hidden="true">🌺</span>
+  <span class="tulip t7" aria-hidden="true">🌷</span>
+  <span class="tulip t8" aria-hidden="true">🌸</span>
+
+  <div class="hero-content">
+    <h1>Женя</h1>
+    <p>&nbsp;</p>
+  </div>
+
+  <canvas class="fog-bottom" id="heroFog"></canvas>
+
+  <div class="scroll-hint"></div>
+</section>
+
+<div class="blend" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════
+     БЛОК 2 — Главный заголовок
+     FIX: фото тюльпанов на весь блок + блюр за надписью
+════════════════════════════════════════ -->
+<section class="section" id="greeting">
+
+  <canvas id="greetingCanvas"></canvas>
+
+  <!-- Фоновое фото (появляется после typewriter) -->
+  <div class="greeting-bg" id="greetingBg" aria-hidden="true"></div>
+  <!-- Затемняющий оверлей поверх фото -->
+  <div class="greeting-overlay" id="greetingOverlay" aria-hidden="true"></div>
+
+  <!-- Стеклянная подложка-блюр ЗА текстом -->
+  <div class="greeting-text-glass" id="greetingGlass">
+    <h2 class="main-title" id="mainTitle"></h2>
+  </div>
+</section>
+
+<div class="blend" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════
+     БЛОК 3 — Поздравление часть 1
+     FIX: исправлен слайдер (не растягивается на мобильных)
+════════════════════════════════════════ -->
+<section class="section" id="wish1">
+
+  <div class="bg-photos" id="photoSlider" aria-hidden="true">
+    <div class="bg-photo"></div>
+    <div class="bg-photo"></div>
+    <div class="bg-photo"></div>
+    <div class="bg-photo"></div>
+    <div class="bg-photo"></div>
+  </div>
+
+  <div class="overlay" aria-hidden="true"></div>
+
+  <div class="wish-text" id="wishText1">
+    <p>Пусть каждый день<br/>приносит много радости</p>
+  </div>
+
+  <canvas class="fog-bottom" id="wish1Fog"></canvas>
+</section>
+
+<div class="blend" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════
+     БЛОК 4 — Поздравление часть 2
+     FIX: убраны цветы по кругу, добавлены лепестки
+════════════════════════════════════════ -->
+<section class="section" id="wish2">
+
+  <!-- Glow-частицы -->
+  <canvas id="wish2Canvas"></canvas>
+
+  <!-- Лепестки (новый canvas поверх glow) -->
+  <canvas id="wish2PetalCanvas"></canvas>
+
+  <div class="wish2-glow-pattern" aria-hidden="true"></div>
+
+  <p class="wish2-part1" id="wish2Part1">А весна принесёт одно большое</p>
+
+  <div class="wish2-happiness" id="happiness">счастье</div>
+</section>
+
+<script>
+/* ═══════════════════════════════════════════
+   0. УТИЛИТЫ
+═══════════════════════════════════════════ */
+
+function isInViewport(el, threshold = 0.25) {
+  const r = el.getBoundingClientRect();
+  const wh = window.innerHeight;
+  return r.top < wh * (1 - threshold) && r.bottom > wh * threshold;
+}
+
+function isCenteredInViewport(el) {
+  const r  = el.getBoundingClientRect();
+  const wh = window.innerHeight;
+  return r.top < wh * 0.7 && r.bottom > wh * 0.3;
+}
+
+/* ═══════════════════════════════════════════
+   1. CANVAS ЛЕПЕСТКИ — физическая симуляция
+   (общий класс для блоков 1, 2 и 4)
+═══════════════════════════════════════════ */
+
+class PetalSystem {
+  constructor(canvas, opts = {}) {
+    this.canvas = canvas;
+    this.ctx = canvas.getContext('2d');
+    this.petals = [];
+    this.count = opts.count || 60;
+    this.wind = opts.wind || 0.3;
+    this.gravity = opts.gravity || 0.04;
+    this.colors = opts.colors || [
+      'rgba(255,182,193,0.85)',
+      'rgba(255,105,150,0.75)',
+      'rgba(255,20,100,0.65)',
+      'rgba(255,200,210,0.8)',
+      'rgba(240,130,160,0.7)',
+    ];
+    this.raf = null;
+    this.active = false;
+    this.resize();
+    window.addEventListener('resize', () => this.resize());
+  }
+
+  resize() {
+    this.canvas.width  = this.canvas.offsetWidth;
+    this.canvas.height = this.canvas.offsetHeight;
+    this.W = this.canvas.width;
+    this.H = this.canvas.height;
+  }
+
+  spawnPetal(atTop = false) {
+    const w = 6 + Math.random() * 14;
+    const h = w * (0.4 + Math.random() * 0.4);
+    return {
+      x: Math.random() * this.W,
+      y: atTop ? -h : Math.random() * this.H,
+      vx: (Math.random() - 0.5) * 1.5 + this.wind,
+      vy: 0.4 + Math.random() * 1.2,
+      w, h,
+      rotation: Math.random() * Math.PI * 2,
+      rotSpeed: (Math.random() - 0.5) * 0.06,
+      wobble: Math.random() * Math.PI * 2,
+      wobbleSpeed: 0.02 + Math.random() * 0.03,
+      color: this.colors[Math.floor(Math.random() * this.colors.length)],
+      opacity: 0.6 + Math.random() * 0.4,
+    };
+  }
+
+  init() {
+    this.petals = Array.from({ length: this.count }, () => this.spawnPetal(false));
+    this.active = true;
+    this.loop();
+  }
+
+  loop() {
+    if (!this.active) return;
+    const ctx = this.ctx;
+    ctx.clearRect(0, 0, this.W, this.H);
+
+    if (this.petals.length < this.count) {
+      this.petals.push(this.spawnPetal(true));
+    }
+
+    this.petals = this.petals.filter(p => p.y < this.H + 60 && p.x > -80 && p.x < this.W + 80);
+
+    for (const p of this.petals) {
+      p.wobble += p.wobbleSpeed;
+      p.vx += (Math.random() - 0.5) * 0.04;
+      p.vy += this.gravity;
+      p.vy = Math.min(p.vy, 3);
+      p.x += p.vx + Math.sin(p.wobble) * 0.6;
+      p.y += p.vy;
+      p.rotation += p.rotSpeed;
+
+      ctx.save();
+      ctx.globalAlpha = p.opacity;
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rotation);
+      ctx.beginPath();
+      ctx.ellipse(0, 0, p.w / 2, p.h / 2, 0, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(200,50,100,0.15)';
+      ctx.lineWidth = 0.5;
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    this.raf = requestAnimationFrame(() => this.loop());
+  }
+
+  stop() {
+    this.active = false;
+    if (this.raf) cancelAnimationFrame(this.raf);
+  }
+}
+
+/* ═══════════════════════════════════════════
+   2. CANVAS ТУМАН
+═══════════════════════════════════════════ */
+
+function drawFog(canvas, color1 = 'rgba(255,200,220,0.0)', color2 = 'rgba(255,230,240,0.55)') {
+  const ctx = canvas.getContext('2d');
+  canvas.width  = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+  const grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+  grad.addColorStop(0, color1);
+  grad.addColorStop(1, color2);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+/* ═══════════════════════════════════════════
+   3. CANVAS ЧАСТИЦЫ-СВЕЧЕНИЕ (блок 4 — glow-фон)
+═══════════════════════════════════════════ */
+
+class GlowParticles {
+  constructor(canvas) {
+    this.canvas = canvas;
+    this.ctx = canvas.getContext('2d');
+    this.particles = [];
+    this.active = false;
+    this.raf = null;
+    this.resize();
+    window.addEventListener('resize', () => this.resize());
+  }
+
+  resize() {
+    this.canvas.width  = this.canvas.offsetWidth;
+    this.canvas.height = this.canvas.offsetHeight;
+    this.W = this.canvas.width;
+    this.H = this.canvas.height;
+  }
+
+  spawnParticle() {
+    const angle = Math.random() * Math.PI * 2;
+    const dist  = 20 + Math.random() * Math.min(this.W, this.H) * 0.45;
+    return {
+      x: this.W / 2 + Math.cos(angle) * dist * (0.5 + Math.random()),
+      y: this.H / 2 + Math.sin(angle) * dist * (0.5 + Math.random()),
+      r: 1.5 + Math.random() * 3.5,
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.5 - 0.3,
+      life: 1,
+      decay: 0.003 + Math.random() * 0.006,
+      hue: 340 + Math.random() * 40,
+    };
+  }
+
+  init() {
+    this.particles = Array.from({ length: 120 }, () => this.spawnParticle());
+    this.active = true;
+    this.loop();
+  }
+
+  loop() {
+    if (!this.active) return;
+    const ctx = this.ctx;
+    ctx.fillStyle = 'rgba(60,0,30,0.18)';
+    ctx.fillRect(0, 0, this.W, this.H);
+
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      const p = this.particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      p.life -= p.decay;
+      if (p.life <= 0) {
+        this.particles.splice(i, 1);
+        this.particles.push(this.spawnParticle());
+        continue;
+      }
+      ctx.save();
+      ctx.globalAlpha = p.life * 0.85;
+      const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 3);
+      g.addColorStop(0, `hsla(${p.hue}, 100%, 85%, 1)`);
+      g.addColorStop(1, `hsla(${p.hue}, 100%, 60%, 0)`);
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r * 3, 0, Math.PI * 2);
+      ctx.fillStyle = g;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    this.raf = requestAnimationFrame(() => this.loop());
+  }
+
+  stop() {
+    this.active = false;
+    if (this.raf) cancelAnimationFrame(this.raf);
+  }
+}
+
+/* ═══════════════════════════════════════════
+   4. 3D ВОСЬМЁРКА — реакция на мышь
+═══════════════════════════════════════════ */
+(function() {
+  const heroSection = document.getElementById('hero');
+  const eight = document.getElementById('heroEight');
+  let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+  function updateEight() {
+    const rect = heroSection.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      const relX = mx - (rect.left + rect.width / 2);
+      const relY = my - (rect.top + rect.height / 2);
+      const rotY =  relX / rect.width  * 18;
+      const rotX = -relY / rect.height * 12;
+      eight.style.transform = `translateY(0) rotateY(${rotY}deg) rotateX(${rotX}deg)`;
+    }
+    requestAnimationFrame(updateEight);
+  }
+  updateEight();
+})();
+
+/* ═══════════════════════════════════════════
+   5. ПАРАЛЛАКС ТЮЛЬПАНОВ
+═══════════════════════════════════════════ */
+(function() {
+  const tulips = document.querySelectorAll('.tulip');
+  function parallax() {
+    const hero = document.getElementById('hero');
+    const rect = hero.getBoundingClientRect();
+    const progress = -rect.top / window.innerHeight;
+    tulips.forEach(t => {
+      const depth = parseFloat(getComputedStyle(t).getPropertyValue('--depth')) || 0.08;
+      const ty = progress * window.innerHeight * depth;
+      t.style.transform = `translateY(${ty}px) rotate(-8deg)`;
+    });
+  }
+  window.addEventListener('scroll', parallax, { passive: true });
+})();
+
+/* ═══════════════════════════════════════════
+   6. TYPEWRITER
+═══════════════════════════════════════════ */
+function typewriter(el, text, speed = 90, onDone) {
+  el.textContent = '';
+  el.classList.add('typing');
+  let i = 0;
+  function tick() {
+    if (i < text.length) {
+      el.textContent += text[i++];
+      setTimeout(tick, speed + Math.random() * 40);
+    } else {
+      el.classList.remove('typing');
+      el.classList.add('done');
+      if (onDone) onDone();
+    }
+  }
+  tick();
+}
+
+/* ═══════════════════════════════════════════
+   7. ИНИЦИАЛИЗАЦИЯ СИСТЕМ
+═══════════════════════════════════════════ */
+
+/* Hero — лепестки */
+const heroPetals = new PetalSystem(document.getElementById('heroCanvas'), {
+  count: 70, wind: 0.4, gravity: 0.035,
+});
+heroPetals.init();
+
+/* Greeting — лепестки (запускаем при показе блока) */
+const greetingPetals = new PetalSystem(document.getElementById('greetingCanvas'), {
+  count: 45,
+  wind: 0.2,
+  gravity: 0.028,
+  colors: [
+    'rgba(255,200,220,0.8)',
+    'rgba(240,100,140,0.7)',
+    'rgba(255,160,190,0.75)',
+    'rgba(220,60,110,0.65)',
+  ],
+});
+
+/* Wish2 — glow-частицы */
+const glowSys = new GlowParticles(document.getElementById('wish2Canvas'));
+
+/* Wish2 — лепестки поверх glow (тёмные, насыщенные для тёмного фона) */
+const wish2Petals = new PetalSystem(document.getElementById('wish2PetalCanvas'), {
+  count: 55,
+  wind: 0.25,
+  gravity: 0.032,
+  colors: [
+    'rgba(255,120,160,0.72)',
+    'rgba(255,60,120,0.65)',
+    'rgba(255,160,190,0.68)',
+    'rgba(220,30,90,0.60)',
+    'rgba(255,180,210,0.75)',
+  ],
+});
+
+/* Туман */
+function initFogs() {
+  drawFog(document.getElementById('heroFog'),
+    'rgba(255,160,190,0)',
+    'rgba(255,220,235,0.6)');
+  drawFog(document.getElementById('wish1Fog'),
+    'rgba(20,0,10,0)',
+    'rgba(80,10,30,0.7)');
+}
+initFogs();
+window.addEventListener('resize', initFogs);
+
+/* ═══════════════════════════════════════════
+   8. СЛАЙДЕР БЛОК 3 — FIX
+   Одно фото = 100% ширины секции. Нет растяжения.
+   Плавная смена по индексу.
+═══════════════════════════════════════════ */
+(function() {
+  const slider    = document.getElementById('photoSlider');
+  const photos    = Array.from(slider.querySelectorAll('.bg-photo'));
+  const total     = photos.length;
+
+  /* Задаём размеры программно, чтобы они не зависели от CSS flex-math */
+  function setSizes() {
+    /* Каждый слайд = ровно ширина родительской секции */
+    const w = slider.parentElement.offsetWidth;
+    photos.forEach(p => {
+      p.style.width  = w + 'px';
+      p.style.height = '100%';
+    });
+    /* Контейнер = ширина всех слайдов */
+    slider.style.width = (w * total) + 'px';
+  }
+
+  setSizes();
+  window.addEventListener('resize', setSizes);
+
+  /* Загрузка: после небольшой паузы включаем blur-эффект */
+  setTimeout(() => {
+    photos.forEach(p => p.classList.add('loaded'));
+  }, 800);
+
+  let current = 0;
+
+  function goTo(idx) {
+    current = ((idx % total) + total) % total;
+    const sectionW = slider.parentElement.offsetWidth;
+    slider.style.transform = `translateX(-${current * sectionW}px)`;
+  }
+
+  /* Автопролистывание */
+  setInterval(() => goTo(current + 1), 3200);
+
+  /* Пересчёт смещения при ресайзе */
+  window.addEventListener('resize', () => {
+    goTo(current);   /* пересчитать translateX под новую ширину */
+  });
+})();
+
+/* ═══════════════════════════════════════════
+   9. SCROLL-DRIVEN АНИМАЦИИ
+═══════════════════════════════════════════ */
+let greetingTriggered     = false;
+let greetingPetalsStarted = false;
+let wish2Triggered        = false;
+let glowStarted           = false;
+let petalWish2Started     = false;
+
+function onScroll() {
+
+  /* ─── Блок 2: typewriter + появление фото ─── */
+  if (!greetingTriggered && isCenteredInViewport(document.getElementById('greeting'))) {
+    greetingTriggered = true;
+    const mainTitle = document.getElementById('mainTitle');
+
+    setTimeout(() => {
+      typewriter(mainTitle, 'С 8 Марта!', 95, () => {
+        /* После окончания typewriter — показываем фото фона */
+        setTimeout(() => {
+          document.getElementById('greetingBg').classList.add('visible');
+          document.getElementById('greetingOverlay').classList.add('visible');
+          /* Включаем блюр-стекло за текстом */
+          document.getElementById('greetingGlass').classList.add('glasson');
+          /* Текст меняет цвет на белый */
+          mainTitle.classList.add('on-photo');
+        }, 300);
+      });
+    }, 200);
+  }
+
+  /* Лепестки блок 2 */
+  if (!greetingPetalsStarted && isCenteredInViewport(document.getElementById('greeting'))) {
+    greetingPetalsStarted = true;
+    greetingPetals.init();
+  }
+
+  /* ─── Блок 3 ─── */
+  if (isInViewport(document.getElementById('wish1'), 0.25)) {
+    document.getElementById('wishText1').classList.add('visible');
+  }
+
+  /* ─── Блок 4: текст + счастье + лепестки ─── */
+  if (!wish2Triggered && isInViewport(document.getElementById('wish2'), 0.25)) {
+    wish2Triggered = true;
+
+    document.getElementById('wish2Part1').classList.add('visible');
+
+    setTimeout(() => {
+      document.getElementById('happiness').classList.add('visible');
+
+      /* Glow-частицы */
+      if (!glowStarted) {
+        glowStarted = true;
+        glowSys.init();
+      }
+
+      /* Лепестки в блоке 4 */
+      if (!petalWish2Started) {
+        petalWish2Started = true;
+        wish2Petals.init();
+      }
+    }, 1000);
+  }
+}
+
+window.addEventListener('scroll', onScroll, { passive: true });
+
+window.addEventListener('load', () => {
+  onScroll();
+  /* Начальный resize canvas'ов */
+  [
+    document.getElementById('heroCanvas'),
+    document.getElementById('greetingCanvas'),
+    document.getElementById('wish2Canvas'),
+    document.getElementById('wish2PetalCanvas'),
+  ].forEach(c => {
+    if (c) { c.width = c.offsetWidth; c.height = c.offsetHeight; }
+  });
+});
+
+window.addEventListener('resize', () => {
+  heroPetals.resize();
+  greetingPetals.resize();
+  glowSys.resize();
+  wish2Petals.resize();
+});
+</script>
+</body>
+</html>
